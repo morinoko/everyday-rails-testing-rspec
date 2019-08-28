@@ -4,16 +4,8 @@ RSpec.describe Note, type: :model do
 
   # set up test data for ALL test in the file
   before do
-    @user = User.create(
-      first_name:  "Joe",
-      last_name:  "Tester",
-      email:      "tester@example.com",
-      password:   "dottle-nouveau-pavilion-tights-furze"
-    )
-
-    @project = @user.projects.create(
-      name: "Test Project"
-    )
+    @user = FactoryBot.create(:user)
+    @project = FactoryBot.create(:project, owner: @user)
   end
 
   # validation tests
@@ -28,7 +20,7 @@ RSpec.describe Note, type: :model do
   end
 
   it "is invalid without a message" do
-    note = Note.new(message: nil)
+    note = FactoryBot.build(:note, message: nil)
     note.valid?
     expect(note.errors[:message]).to include("can't be blank")  
   end
