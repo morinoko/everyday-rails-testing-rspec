@@ -6,13 +6,7 @@ RSpec.describe User, type: :model do
   end
 
   it "is valid with a first name, last name, email, and password" do
-    user = User.new(
-      first_name: "Joe",
-      last_name: "Tester",
-      email: "tester@example.com",
-      password: "dottle-nouveau-pavilion-tights-furze"
-    )
-
+    user = FactoryBot.build(:user)
     expect(user).to be_valid
   end
 
