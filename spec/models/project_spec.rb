@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Project, type: :model do
-  xit "can have many notes" do
+  it "can have many notes" do
     project = FactoryBot.create(:project, :with_notes)
     expect(project.notes.length).to eq 5
   end
@@ -10,24 +10,24 @@ RSpec.describe Project, type: :model do
 
     before do
       @user = FactoryBot.create(:user)
-      @project = FactoryBot.create(:project, owner: @user, name: "Rails app")
+      @project = FactoryBot.create(:project, owner: @user, name: "Test Project")
     end
 
     context "within a single user" do
-      it "does not allow duplicate project names" do
-        new_project = FactoryBot.build(:project, owner: @user, name: "Rails app")
-
+      it "does not allow duplicate project" do
+        new_project = FactoryBot.build(:project, owner: @user, name: "Test Project")
+        
         new_project.valid?
         expect(new_project.errors[:name]).to include("has already been taken")
       end
     end
 
     context "across different users" do
-      it "does allow duplicate project names" do
-        another_user = FactoryBot.create(:user)
-        another_users_project = FactoryBot.build(:project, owner: another_user, name: "Rails app")
+      it "allows two projects to have the same name" do
+        other_user = FactoryBot.create(:user)
+        other_project = FactoryBot.create(:project, owner: other_user, name: "Test Project")
 
-        expect(another_users_project).to be_valid
+        expect(other_project).to be_valid
       end
     end
   end
