@@ -6,13 +6,21 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rails', '~> 5.1.1'
+gem "actionview", ">= 5.1.6.2"
+gem "activejob", ">= 5.1.6.1"
 gem 'sqlite3'
+gem "rack", ">= 2.0.6"
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem "nokogiri", ">= 1.10.4"
+gem "loofah", ">= 2.2.3"
+gem "rubyzip", ">= 1.2.2"
+gem "ffi", ">= 1.9.24"
+gem "sprockets", ">= 3.7.2"
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.6.0'
@@ -32,8 +40,8 @@ end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'bootstrap-sass'
+gem "bootstrap-sass", ">= 3.4.1"
 gem 'jquery-rails'
-gem 'devise'
-gem 'paperclip'
+gem "devise", ">= 4.6.0"
+gem "paperclip", ">= 5.2.0"
 gem 'geocoder'
