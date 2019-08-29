@@ -39,7 +39,8 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '~> 2.13.0'
+  gem 'capybara'
+  gem 'webdrivers'
   gem 'launchy', '~> 2.4.3'
 end
 
