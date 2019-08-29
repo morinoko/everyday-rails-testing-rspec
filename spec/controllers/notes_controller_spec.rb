@@ -6,6 +6,7 @@ RSpec.describe NotesController, type: :controller do
 
   before do
     # note--can be dangerous to stub third-party code!!
+    # may be necessary wiht slow network calls or rate-limited services
     allow(request.env["warden"]).to receive(:authenticate!).and_return(user)
     allow(controller).to receive(:current_user).and_return(user)
     allow(Project).to receive(:find).with("123").and_return(project)
