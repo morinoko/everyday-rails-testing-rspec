@@ -27,6 +27,25 @@ RSpec.describe Note, type: :model do
     expect(note.errors[:message]).to include("can't be blank")  
   end
 
+  # Delegating user name to user
+  # Regular version
+  it "delegates name to the user who created it" do
+    user = FactoryBot.create(:user, first_name: "Fake", last_name: "User")
+    note = Note.new(user: user)
+    expect(note.user_name).to eq "Fake User"
+  end
+
+  # Mocked and stubbed version
+  it "delegates name to the user who created it" do
+    # user = double("user", name: "Fake User")
+    # Verified double:
+    user = instance_double("User", name: "Fake User")
+    
+    note = Note.new
+    allow(note).to receive(:user).and_return(user)
+    expect(note.user_name).to eq "Fake User"
+  end
+
   # search test
   describe "search message for a term" do
 
