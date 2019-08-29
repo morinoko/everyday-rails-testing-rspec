@@ -10,25 +10,41 @@ RSpec.describe User, type: :model do
     expect(user).to be_valid
   end
 
-  it "is invalid without a first name" do
+  # Shoulda version
+  it { is_expected.to validate_presence_of :first_name }
+
+  # Long version
+  xit "is invalid without a first name" do
     user = FactoryBot.build(:user, first_name: nil)
     user.valid?
     expect(user.errors[:first_name]).to include("can't be blank")
   end
 
-  it "is invalid without a last name" do
+  # Shoulda version
+  it { is_expected.to validate_presence_of :last_name }
+
+  # Long version
+  xit "is invalid without a last name" do
     user = FactoryBot.build(:user, last_name: nil)
     user.valid?
     expect(user.errors[:last_name]).to include("can't be blank")
   end
 
-  it "is invalid without an email address" do
+  # Shoulda version
+  it { is_expected.to validate_presence_of :email }
+
+  # Long version
+  xit "is invalid without an email address" do
     user = FactoryBot.build(:user, email: nil)
     user.valid?
     expect(user.errors[:email]).to include("can't be blank")
   end
 
-  it "is invalid without a duplicate email address" do
+  # Shoulda version
+  it { is_expected.to validate_uniqueness_of(:email).case_insensitive }
+
+  # Long version
+  xit "is invalid without a duplicate email address" do
     user = FactoryBot.create(:user, email: "joe@example.com")
     other_user = FactoryBot.build(:user, email: "joe@example.com")
     other_user.valid?
