@@ -1,3 +1,4 @@
+# could be used in place of Devise helper
 module LoginSupport
   def sign_in_as(user)
     visit root_path
