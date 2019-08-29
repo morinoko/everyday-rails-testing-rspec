@@ -7,7 +7,10 @@ RSpec.describe Project, type: :model do
   end
 
   describe "duplicate project names" do
+    # Shoulda version
+    it { is_expected.to validate_uniqueness_of(:name).scoped_to(:user_id) }
 
+    # Long version
     before do
       @user = FactoryBot.create(:user)
       @project = FactoryBot.create(:project, owner: @user, name: "Test Project")
