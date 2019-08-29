@@ -39,4 +39,8 @@ RSpec.describe User, type: :model do
     user = FactoryBot.build(:user, first_name: "Joe", last_name: "Tester")
     expect(user.name).to eq("Joe Tester")
   end
+
+  # Tests can also be written tersly, with `subject` and `is_expected`:
+  subject(:user) { FactoryBot.build(:user) } # can be reused with other test examples
+  it { is_expected.to satisfy { |user| user.name == "Felice Forby"} }
 end
