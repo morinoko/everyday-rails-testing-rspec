@@ -59,4 +59,12 @@ RSpec.describe User, type: :model do
   # Tests can also be written tersly, with `subject` and `is_expected`:
   subject(:user) { FactoryBot.build(:user) } # can be reused with other test examples
   it { is_expected.to satisfy { |user| user.name == "Felice Forby"} }
+
+  it "sends a welcome email on account creation" do
+    allow(UserMailer).to receive_message_chain(:welcome_email, :deliver_later)
+    user = FactoryBot.create(:user)
+    # test correct funtionality with a spy, because user needs to exist in order
+    # for mailer to be sent
+    expect(UserMailer).to have_received(:welcome_email).with(user)
+  end
 end
