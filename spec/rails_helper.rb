@@ -7,6 +7,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'capybara/rspec'
+require 'paperclip/matchers'
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -60,6 +61,8 @@ RSpec.configure do |config|
   config.include RequestSpecHelper, type: :request
   config.include Devise::Test::IntegrationHelpers, type: :feature
 
+  # Add support for Paperclip's Shoulda matchers
+  config.include Paperclip::Shoulda::matchers
   # clean up file uploads when test suite is finished
   config.after(:suite) do
     FileUtils.rm_rf(Dir["#{Rails.root}/spec/test_uploads/"])
