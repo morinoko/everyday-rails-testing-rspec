@@ -27,6 +27,8 @@ RSpec.describe Note, type: :model do
     expect(note.errors[:message]).to include("can't be blank")  
   end
 
+  it { is_expected.to have_attached_file(:attachment) }
+
   # Delegating user name to user
   # Regular version
   it "delegates name to the user who created it" do
